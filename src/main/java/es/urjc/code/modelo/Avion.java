@@ -20,6 +20,9 @@ public class Avion {
     private String modelo;
     private long horasVuelo;
 
+    @Column(columnDefinition="json")
+    private String revision;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "avion")
     private List<Vuelo> vuelos;
 

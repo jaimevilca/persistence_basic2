@@ -32,6 +32,9 @@ public class Vuelo {
     @OneToMany(mappedBy = "vuelo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TripulanteVuelo> tripulantes = new ArrayList<>();
 
+    @Column(columnDefinition="json")
+    private String tripulante;
+
     public Vuelo() {}
 
     public Vuelo(String codigo, String compania, Avion avion, Aeropuerto origen, Aeropuerto destino, Date fechaSalida, Double duracion) {
