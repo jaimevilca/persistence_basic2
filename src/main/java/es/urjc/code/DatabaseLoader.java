@@ -23,6 +23,12 @@ public class DatabaseLoader implements CommandLineRunner {
     @Autowired
     private VueloRepository vueloRepository;
 
+    @Autowired
+    private TripulanteRepository tripulanteRepository;
+
+    @Autowired
+    private RepositorioProvincia repositorioProvincia;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -32,6 +38,20 @@ public class DatabaseLoader implements CommandLineRunner {
         System.out.println("-----------------------------------------");
         mecanicos.forEach(m -> System.out.println("id: " + m.getId() + " | Fabricante: " + m.getFabricante()
                 + " | Modelo: " + m.getModelo() + " | Mecánicos Responsables: " + m.getMecanicosResponsables()));
+
+
+        // Para cada tripulante, mostrar su nombre y apellidos junto con su número total de vuelos y la suma de horas de estos
+        List<TripulanteDTO> tripulantes = tripulanteRepository.vuelosHorasPorTripulante();
+        System.out.println("Tripulantes con el total de vuelos");
+        System.out.println("-----------------------------------------");
+        tripulantes.forEach(System.out::println);
+
+
+        //• Listado de los datos de todas las provincias.
+        List<Provincia> provincias = repositorioProvincia.findAll();
+        System.out.println("Listado de los datos de todas las provincias");
+        System.out.println("-----------------------------------------");
+        provincias.forEach(System.out::println);
 
 
     }
